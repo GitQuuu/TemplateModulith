@@ -27,6 +27,7 @@ builder.Services.AddAuthentication()
 
 builder.Services.AddAuthorizationBuilder();
 builder.Services.AddControllers();
+builder.Services.AddEndpointsApiExplorer(); // This will display the identityApi endpoints
 builder.Services.AddSwaggerGen(c =>
 {
     // Retrieve project name dynamically look in properties of project and the xml documentation path
@@ -62,7 +63,7 @@ app.UseRouting();
 
 app.UseAuthentication();
 app.UseAuthorization();
-app.MapIdentityApi<IdentityUser>(); // The new identity endpoints using minimalapi 
+app.MapIdentityApi<IdentityUser>(); // Map identity endpoints which is using minimalapi
 
 app.MapStaticAssets();
 
