@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API", "API\API.csproj", "{55654423-1C05-48B2-87B9-0115DB6785D9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dependencies", "Dependencies\Dependencies.csproj", "{8D05D9FC-7C5B-4971-B699-885AB0984FAD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{55654423-1C05-48B2-87B9-0115DB6785D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{55654423-1C05-48B2-87B9-0115DB6785D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{55654423-1C05-48B2-87B9-0115DB6785D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D05D9FC-7C5B-4971-B699-885AB0984FAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D05D9FC-7C5B-4971-B699-885AB0984FAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D05D9FC-7C5B-4971-B699-885AB0984FAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D05D9FC-7C5B-4971-B699-885AB0984FAD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
