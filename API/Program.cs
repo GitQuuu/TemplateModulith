@@ -12,8 +12,20 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlite(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-    .AddEntityFrameworkStores<ApplicationDbContext>();
+builder.Services.AddDefaultIdentity<IdentityUser>(options =>
+    {
+        // Configure Identity options (password complexity, lockout, etc.)
+        // e.g.: options.Password.RequireDigit = true;
+    })
+    .AddRoles<IdentityRole>()
+    .AddEntityFrameworkStores<ApplicationDbContext>()
+    .AddDefaultTokenProviders()
+    .AddApiEndpoints();	// enable Identity API endpoints
+
+builder.Services.AddAuthentication()
+    .AddBearerToken(IdentityConstants.BearerScheme);
+
+builder.Services.AddAuthorizationBuilder();
 builder.Services.AddControllers();
 builder.Services.AddSwaggerGen(c =>
 {
@@ -50,6 +62,7 @@ app.UseRouting();
 
 app.UseAuthentication();
 app.UseAuthorization();
+app.MapIdentityApi<IdentityUser>(); // The new identity endpoints using minimalapi 
 
 app.MapStaticAssets();
 
