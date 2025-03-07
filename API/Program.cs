@@ -1,3 +1,4 @@
+using System.Reflection;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using API.Data;
@@ -14,6 +15,14 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllers();
+builder.Services.AddSwaggerGen(c =>
+{
+    // Retrieve project name dynamically look in properties of project and the xml documentation path
+    var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    var xPath   = Path.Combine(AppContext.BaseDirectory, xmlFile);
+    c.IncludeXmlComments(xPath, true);
+	
+});
 
 var app = builder.Build();
 
@@ -21,6 +30,13 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseMigrationsEndPoint();
+    // Enable Swagger in development mode
+    app.UseSwagger();
+    app.UseSwaggerUI(c =>
+    {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Modulith template");
+        c.RoutePrefix = string.Empty;
+    });
 }
 else
 {
@@ -32,6 +48,7 @@ else
 app.UseHttpsRedirection();
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapStaticAssets();
