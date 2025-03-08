@@ -63,7 +63,7 @@ app.UseRouting();
 
 app.UseAuthentication();
 app.UseAuthorization();
-app.MapIdentityApi<IdentityUser>(); // Map identity endpoints which is using minimalapi
+app.MapGroup("api/account").MapIdentityApi<IdentityUser>(); // Map identity endpoints which is using minimalapi, and prefix it
 
 app.MapStaticAssets();
 
