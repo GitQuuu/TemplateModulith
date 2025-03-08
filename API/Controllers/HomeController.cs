@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers;
@@ -18,6 +19,15 @@ public class HomeController : Controller
     {
         return Ok();
     }
+    
+    [HttpGet]
+    [Authorize]
+    [Route("Protected")]
+    public async Task<IActionResult> ProtectedResource()
+    {
+        return Ok();
+    }
+    
 
     // [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     // public IActionResult Error()
